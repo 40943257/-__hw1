@@ -11,7 +11,7 @@ int main()
 			a[1] = rand()  % 9 + 1;
 			a[2] = rand()  % 9 + 1;
 			a[3] = rand()  % 9 + 1;
-		}while((a[0] == a[1]) && (a[2] == a[3]));
+		}while((a[0] == a[1]) || (a[2] == a[3]));
 		b = rand()  % 4;
 		printf("(%d) %d/%d", i, a[0], a[1]);
 		switch(b)
