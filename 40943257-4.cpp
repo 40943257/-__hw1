@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int GCD(int a, int b)
+{
+	if (b == 0)
+		return a;
+	return GCD(b, a % b);
+}
+
 int main()
 {
 	int num1[2], num2[2], num3[2], operatorNumber;
@@ -43,13 +50,9 @@ int main()
 			num3[0] = -num3[0];
 			isNegativeNumber = true;
 		}
-		for (int j = (num3[0] + num3[1]) / 2; j >= 1; j--)
-			if ((num3[0] % j == 0) && (num3[1] % j == 0))
-			{
-				num3[0] /= j;
-				num3[1] /= j;
-				break;
-			}
+		int commonFactor = GCD(num3[0], num3[1]);
+		num3[0] /= commonFactor;
+		num3[1] /= commonFactor;
 		if (isNegativeNumber)
 			num3[0] = -num3[0];
 		if ((num3[1] == 1) || (num3[0] == 0))
