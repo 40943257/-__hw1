@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// 俺轉香除法
+// 輾轉相除法
 int GCD(int a, int b)
 {
 	if (b == 0)
