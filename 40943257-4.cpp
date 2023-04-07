@@ -1,54 +1,62 @@
-#include<stdio.h>
-#include<stdlib.h> 
+#include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
-	int a[6], b;
-	for(int i = 1; i <= 100; i++)
+	int num1[2], num2[2], num3[2], operatorNumber;
+	for (int i = 1; i <= 100; i++)
 	{
-		do{
-			a[0] = rand()  % 9 + 1;
-			a[1] = rand()  % 9 + 1;
-			a[2] = rand()  % 9 + 1;
-			a[3] = rand()  % 9 + 1;
-		}while((a[0] == a[1]) || (a[2] == a[3]));
-		b = rand()  % 4;
-		printf("(%d) %d/%d", i, a[0], a[1]);
-		switch(b)
+		do
 		{
-			case 0 : printf(" + %d/%d = ", a[2], a[3]);
-					 a[5] = a[1] * a[3];
-				     a[4] = a[0] * a[3] + a[2] * a[1]; break;
-			case 1 : printf(" - %d/%d = ", a[2], a[3]);
-					 a[5] = a[1] * a[3];
-				     a[4] = a[0] * a[3] - a[2] * a[1]; break;
-			case 2 : printf(" * %d/%d = ", a[2], a[3]);
-					 a[5] = a[1] * a[3];
-				     a[4] = a[0] * a[2];               break;
-			case 3 : printf(" / %d/%d = ", a[2], a[3]); 
-					 a[5] = a[1] * a[2];
-				     a[4] = a[0] * a[3];
-		}
-		int c = 0;
-		if(a[4] < 0)
+			num1[0] = rand() % 9 + 1;
+			num1[1] = rand() % 9 + 1;
+			num2[0] = rand() % 9 + 1;
+			num2[1] = rand() % 9 + 1;
+		} while ((num1[0] == num1[1]) || (num2[0] == num2[1]));
+		operatorNumber = rand() % 4;
+		printf("(%d) %d/%d", i, num1[0], num1[1]);
+		switch (operatorNumber)
 		{
-			a[4] = - a[4]; 
-			c = 1;
+		case 0:
+			printf(" + %d/%d = ", num2[0], num2[1]);
+			num3[1] = num1[1] * num2[1];
+			num3[0] = num1[0] * num2[1] + num2[0] * num1[1];
+			break;
+		case 1:
+			printf(" - %d/%d = ", num2[0], num2[1]);
+			num3[1] = num1[1] * num2[1];
+			num3[0] = num1[0] * num2[1] - num2[0] * num1[1];
+			break;
+		case 2:
+			printf(" * %d/%d = ", num2[0], num2[1]);
+			num3[1] = num1[1] * num2[1];
+			num3[0] = num1[0] * num2[0];
+			break;
+		case 3:
+			printf(" / %d/%d = ", num2[0], num2[1]);
+			num3[1] = num1[1] * num2[0];
+			num3[0] = num1[0] * num2[1];
 		}
-		for(int j = (a[4] + a[5]) / 2; j >= 1; j--)
-			if((a[4] % j == 0) && (a[5] % j == 0))
+		bool isNegativeNumber = false;
+		if (num3[0] < 0)
+		{
+			num3[0] = -num3[0];
+			isNegativeNumber = true;
+		}
+		for (int j = (num3[0] + num3[1]) / 2; j >= 1; j--)
+			if ((num3[0] % j == 0) && (num3[1] % j == 0))
 			{
-				a[4] /= j;
-				a[5] /= j;
-				break; 
+				num3[0] /= j;
+				num3[1] /= j;
+				break;
 			}
-		if(c)
-			a[4] = - a[4];
-		if((a[5] == 1) || (a[4] == 0))
-			printf("%d", a[4]);
+		if (isNegativeNumber)
+			num3[0] = -num3[0];
+		if ((num3[1] == 1) || (num3[0] == 0))
+			printf("%d", num3[0]);
 		else
-			printf("%d/%d", a[4], a[5]);
-		if(i % 2 == 0)
+			printf("%d/%d", num3[0], num3[1]);
+		if (i % 2 == 0)
 			printf("\n\n");
 		else
 			printf("\t\t");
